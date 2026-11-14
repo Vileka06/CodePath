@@ -26,7 +26,6 @@ The curriculum contains 292 chapter entries organised into sections. Lesson page
 |---|---|
 | Programming language | Python |
 | Web application | Streamlit |
-| Live AI tutor | Google Gemini API using the `google-genai` SDK |
 | LLM experimentation | TinyLlama 1.1B Chat |
 | Fine-tuning approach | LoRA / 4-bit quantized fine-tuning experiment |
 | Training dataset | Code Alpaca 20K (Hugging Face) |
