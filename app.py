@@ -69,8 +69,9 @@ def get_api_key():
 def ask_gemini(question, course, topic, history):
     api_key = get_api_key()
     if not api_key:
-        return ("**The AI tutor is not connected yet.** Add a valid Gemini API key to "
-                '`.streamlit/secrets.toml` using `GEMINI_API_KEY = "your-key"`, then restart the app.')
+        return ("**The AI tutor is not connected yet.** The deployment is missing its private "
+                "GEMINI_API_KEY secret. Add it in Streamlit app settings, then reboot the app.")
+
     lesson = LESSONS.get(course, {}).get(topic, {})
     client = genai.Client(api_key=api_key)
     system_context = f"""
@@ -86,29 +87,65 @@ Course lesson syntax: {lesson.get('syntax', '')}
 Course lesson example: {lesson.get('example', '')}
 Course lesson output: {lesson.get('output', '')}
 """
-    contents = [{"role": "user", "parts": [{"text": system_context}]}]
+    # Gemini chat history uses "user" and "model" roles, not "assistant".
+    contents = []
     for item in history[-8:]:
-        contents.append({"role": item["role"], "parts": [{"text": item["content"]}]})
+        role = "model" if item["role"] == "assistant" else "user"
+        contents.append({"role": role, "parts": [{"text": item["content"]}]})
     contents.append({"role": "user", "parts": [{"text": question}]})
+
     model = os.getenv("GEMINI_MODEL", "gemini-3.8-flash")
+    # Retry temporary capacity errors; optionally use a fallback model from secrets.
     try:
-        response = client.models.generate_content(model=model, contents=contents)
-        return response.text or "I couldn't generate a response. Please try again."
-    except Exception as exc:
-        message = str(exc)
-        low = message.lower()
-        if "401" in message or "unauthenticated" in low or "api key not valid" in low or "invalid api key" in low:
-            return ("**Gemini authentication failed (401).** The key being read by this app is not accepted. "
-                    "Create a new Gemini API key in Google AI Studio, copy the complete key (not an OAuth token), "
-                    "replace the value in `.streamlit/secrets.toml`, and restart Streamlit. "
-                    "Do not paste the key into chat or commit it to GitHub.")
-        if "403" in message or "permission" in low:
-            return ("**Gemini access denied (403).** Check that the key belongs to a Google AI Studio project "
-                    "with Gemini API access enabled and that the API is available for that project.")
-        if "404" in message or "not_found" in low:
-            return (f"**Model not found.** The configured model `{model}` is unavailable to this API key/project. "
-                    "Check the current model list in Google AI Studio or set GEMINI_MODEL to a supported model.")
-        return f"**Gemini request failed.** {type(exc).__name__}: {message}"
+        fallback = str(st.secrets.get("GEMINI_FALLBACK_MODEL", "")).strip()
+    except Exception:
+        fallback = os.getenv("GEMINI_FALLBACK_MODEL", "").strip()
+
+    models_to_try = [model]
+    if fallback and fallback != model:
+        models_to_try.append(fallback)
+
+    last_error = None
+    for candidate in models_to_try:
+        for attempt in range(3):
+            try:
+                response = client.models.generate_content(
+                    model=candidate,
+                    contents=contents,
+                    config={"system_instruction": system_context, "temperature": 0.4},
+                )
+                return response.text or "I couldn't generate a response. Please try again."
+            except Exception as exc:
+                last_error = exc
+                message = str(exc)
+                low = message.lower()
+                if "401" in message or "unauthenticated" in low or "api key not valid" in low or "invalid api key" in low:
+                    return ("**Gemini authentication failed (401).** The key stored in Streamlit Secrets "
+                            "is not accepted. Create a fresh Gemini API key in Google AI Studio, replace "
+                            "the secret, and reboot the app. Never share the key or commit it to GitHub.")
+                if "403" in message or "permission" in low:
+                    return ("**Gemini access denied (403).** Check that the API key belongs to a project "
+                            "with Gemini API access enabled.")
+                if "404" in message or "not_found" in low:
+                    break
+                retryable = any(code in message for code in ("503", "429", "500", "502", "504", "408"))
+                if not retryable:
+                    return f"**Gemini request failed.** {type(exc).__name__}: {message}"
+                if attempt < 2:
+                    import time
+                    time.sleep(2 ** (attempt + 1))
+
+    if last_error:
+        message = str(last_error)
+        if "503" in message or "UNAVAILABLE" in message:
+            return ("**Gemini is temporarily busy (503).** Your API key is being accepted, but Google's "
+                    "model servers are currently overloaded. The app retried automatically. Please try "
+                    "again in a minute, or configure GEMINI_FALLBACK_MODEL in Streamlit Secrets.")
+        if "404" in message or "not_found" in message.lower():
+            return (f"**Gemini model not found.** Check that {model} is available for your API key, "
+                    "or set GEMINI_MODEL to a model listed in Google AI Studio.")
+        return f"**Gemini request failed.** {type(last_error).__name__}: {last_error}"
+    return "The AI tutor could not get a response. Please try again."
 
 def show_header():
     left, right1, right2 = st.columns([6, 1, 1])
