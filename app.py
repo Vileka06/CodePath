@@ -66,86 +66,72 @@ def get_api_key():
         secret = ""
     return os.getenv("GEMINI_API_KEY", "").strip() or str(secret).strip()
 
-def ask_gemini(question, course, topic, history):
+def ask_gemini_stream(question, course, topic, history):
     api_key = get_api_key()
     if not api_key:
-        return ("**The AI tutor is not connected yet.** The deployment is missing its private "
-                "GEMINI_API_KEY secret. Add it in Streamlit app settings, then reboot the app.")
+        yield ("**The AI tutor is not connected yet.** Add GEMINI_API_KEY to Streamlit Secrets "
+               "and reboot the app.")
+        return
 
     lesson = LESSONS.get(course, {}).get(topic, {})
     client = genai.Client(api_key=api_key)
     system_context = f"""
-You are the CodePath Academy programming tutor. Teach accurately and patiently, using original explanations.
-Use clear beginner-friendly English. For a concept question, explain: definition, why it is used, how it works,
-syntax, a topic-specific code example, line-by-line explanation, and expected output.
-For debugging, identify the exact cause, show corrected code, and explain the fix.
-Do not claim that code was executed unless it was actually executed. If uncertain, say so.
+You are the CodePath Academy programming tutor. Teach accurately in simple beginner-friendly English.
+Answer directly and avoid unnecessary introductions. Aim for 120-180 words unless the user asks for detail or code.
+For concept questions, briefly explain the definition, purpose, syntax, one relevant example and its output.
+For debugging, identify the cause, show corrected code and explain the fix.
+Do not invent execution results.
 Current course: {CURRICULUM[course]['title']}
 Current topic: {topic}
-Course lesson concept: {lesson.get('concept', '')}
-Course lesson syntax: {lesson.get('syntax', '')}
-Course lesson example: {lesson.get('example', '')}
-Course lesson output: {lesson.get('output', '')}
+Lesson concept: {lesson.get('concept', '')}
+Lesson syntax: {lesson.get('syntax', '')}
+Lesson example: {lesson.get('example', '')}
+Lesson output: {lesson.get('output', '')}
 """
-    # Gemini chat history uses "user" and "model" roles, not "assistant".
     contents = []
-    for item in history[-8:]:
+    # A short recent context keeps requests smaller and quicker.
+    for item in history[-4:]:
         role = "model" if item["role"] == "assistant" else "user"
         contents.append({"role": role, "parts": [{"text": item["content"]}]})
     contents.append({"role": "user", "parts": [{"text": question}]})
 
-    model = os.getenv("GEMINI_MODEL", "gemini-3.8-flash")
-    # Retry temporary capacity errors; optionally use a fallback model from secrets.
+    # Flash-Lite is designed for low-latency, lightweight requests.
+    model = os.getenv("GEMINI_MODEL", "gemini-3.5-flash-lite")
     try:
-        fallback = str(st.secrets.get("GEMINI_FALLBACK_MODEL", "")).strip()
-    except Exception:
-        fallback = os.getenv("GEMINI_FALLBACK_MODEL", "").strip()
-
-    models_to_try = [model]
-    if fallback and fallback != model:
-        models_to_try.append(fallback)
-
-    last_error = None
-    for candidate in models_to_try:
-        for attempt in range(3):
-            try:
-                response = client.models.generate_content(
-                    model=candidate,
-                    contents=contents,
-                    config={"system_instruction": system_context, "temperature": 0.4},
-                )
-                return response.text or "I couldn't generate a response. Please try again."
-            except Exception as exc:
-                last_error = exc
-                message = str(exc)
-                low = message.lower()
-                if "401" in message or "unauthenticated" in low or "api key not valid" in low or "invalid api key" in low:
-                    return ("**Gemini authentication failed (401).** The key stored in Streamlit Secrets "
-                            "is not accepted. Create a fresh Gemini API key in Google AI Studio, replace "
-                            "the secret, and reboot the app. Never share the key or commit it to GitHub.")
-                if "403" in message or "permission" in low:
-                    return ("**Gemini access denied (403).** Check that the API key belongs to a project "
-                            "with Gemini API access enabled.")
-                if "404" in message or "not_found" in low:
-                    break
-                retryable = any(code in message for code in ("503", "429", "500", "502", "504", "408"))
-                if not retryable:
-                    return f"**Gemini request failed.** {type(exc).__name__}: {message}"
-                if attempt < 2:
-                    import time
-                    time.sleep(2 ** (attempt + 1))
-
-    if last_error:
-        message = str(last_error)
-        if "503" in message or "UNAVAILABLE" in message:
-            return ("**Gemini is temporarily busy (503).** Your API key is being accepted, but Google's "
-                    "model servers are currently overloaded. The app retried automatically. Please try "
-                    "again in a minute, or configure GEMINI_FALLBACK_MODEL in Streamlit Secrets.")
-        if "404" in message or "not_found" in message.lower():
-            return (f"**Gemini model not found.** Check that {model} is available for your API key, "
-                    "or set GEMINI_MODEL to a model listed in Google AI Studio.")
-        return f"**Gemini request failed.** {type(last_error).__name__}: {last_error}"
-    return "The AI tutor could not get a response. Please try again."
+        stream = client.models.generate_content_stream(
+            model=model,
+            contents=contents,
+            config={
+                "system_instruction": system_context,
+                "temperature": 0.3,
+                "max_output_tokens": 700,
+            },
+        )
+        received_text = False
+        for chunk in stream:
+            if chunk.text:
+                received_text = True
+                yield chunk.text
+        if not received_text:
+            yield "I couldn't generate a response. Please try asking in a different way."
+    except Exception as exc:
+        message = str(exc)
+        low = message.lower()
+        if "401" in message or "unauthenticated" in low or "api key not valid" in low or "invalid api key" in low:
+            yield ("**Gemini authentication failed (401).** Check the GEMINI_API_KEY secret in Streamlit "
+                   "and reboot the app. Never share the key or commit it to GitHub.")
+        elif "403" in message or "permission" in low:
+            yield "**Gemini access denied (403).** Check that Gemini API access is enabled for this key's project."
+        elif "404" in message or "not_found" in low:
+            yield (f"**Gemini model not found:** {model}. Check that this model is available to your API key, "
+                   "or set GEMINI_MODEL in Streamlit Secrets to a supported model.")
+        elif "503" in message or "UNAVAILABLE" in message:
+            yield ("**Gemini is temporarily busy (503).** Try again shortly. This is Google's service capacity, "
+                   "not necessarily an issue with your API key.")
+        elif "429" in message or "RESOURCE_EXHAUSTED" in message:
+            yield "**Gemini rate limit reached (429).** Wait briefly and try again."
+        else:
+            yield f"**Gemini request failed.** {type(exc).__name__}: {message}"
 
 def show_header():
     left, right1, right2 = st.columns([6, 1, 1])
@@ -283,8 +269,11 @@ elif page == "Tutor":
             st.markdown(prompt)
         with st.chat_message("assistant"):
             with st.spinner("Preparing your explanation..."):
-                answer = ask_gemini(prompt, course, st.session_state.topic, st.session_state.chat_history[:-1])
-            st.markdown(answer)
+                answer = st.write_stream(
+                    ask_gemini_stream(prompt, course, st.session_state.topic, st.session_state.chat_history[:-1])
+                )
+            if not isinstance(answer, str):
+                answer = str(answer)
         st.session_state.chat_history.append({"role": "assistant", "content": answer})
     if st.button("Clear conversation"):
         st.session_state.chat_history = []
