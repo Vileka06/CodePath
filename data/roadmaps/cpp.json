@@ -1,0 +1,55 @@
+{
+  "id": "cpp",
+  "title": "C++ Tutorial",
+  "description": "Learn C++ fundamentals, object-oriented programming and STL.",
+  "stages": [
+    {
+      "level": "Beginner",
+      "topics": [
+        "Introduction to C++",
+        "Install a C++ Compiler",
+        "C++ Program Structure",
+        "Variables",
+        "Data Types",
+        "Input and Output",
+        "Operators",
+        "If...Else",
+        "Switch",
+        "Loops",
+        "Functions",
+        "Arrays",
+        "Strings"
+      ]
+    },
+    {
+      "level": "Intermediate",
+      "topics": [
+        "Pointers",
+        "References",
+        "Classes and Objects",
+        "Constructors",
+        "Destructors",
+        "Encapsulation",
+        "Inheritance",
+        "Polymorphism",
+        "Operator Overloading",
+        "Templates",
+        "STL Vectors",
+        "STL Maps",
+        "Iterators"
+      ]
+    },
+    {
+      "level": "Advanced",
+      "topics": [
+        "Smart Pointers",
+        "Exception Handling",
+        "File Streams",
+        "Lambda Expressions",
+        "Algorithms Library",
+        "Concurrency Basics",
+        "Modern C++ Features"
+      ]
+    }
+  ]
+}

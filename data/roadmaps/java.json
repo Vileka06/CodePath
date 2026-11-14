@@ -1,0 +1,60 @@
+{
+  "id": "java",
+  "title": "Java Tutorial",
+  "description": "Learn Java step by step, from syntax to object-oriented programming.",
+  "stages": [
+    {
+      "level": "Beginner",
+      "topics": [
+        "Introduction to Java",
+        "JDK, JRE and JVM",
+        "Install Java",
+        "Java Syntax",
+        "First Java Program",
+        "Variables",
+        "Data Types",
+        "Type Casting",
+        "Operators",
+        "User Input",
+        "If...Else",
+        "Switch",
+        "While Loop",
+        "For Loop",
+        "Arrays",
+        "Strings",
+        "Methods"
+      ]
+    },
+    {
+      "level": "Intermediate",
+      "topics": [
+        "Classes and Objects",
+        "Constructors",
+        "this Keyword",
+        "Encapsulation",
+        "Inheritance",
+        "Polymorphism",
+        "Abstraction",
+        "Interfaces",
+        "Packages",
+        "Exception Handling",
+        "Collections",
+        "Generics",
+        "File Handling"
+      ]
+    },
+    {
+      "level": "Advanced",
+      "topics": [
+        "Lambda Expressions",
+        "Stream API",
+        "Multithreading",
+        "JDBC",
+        "Unit Testing",
+        "JVM Memory Basics",
+        "Spring Boot Introduction",
+        "REST API Basics"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "id": "html",
+  "title": "HTML Tutorial",
+  "description": "Build the structure of web pages with semantic HTML.",
+  "stages": [
+    {
+      "level": "Beginner",
+      "topics": [
+        "Introduction to HTML",
+        "HTML Editors",
+        "HTML Document Structure",
+        "HTML Elements",
+        "HTML Attributes",
+        "Headings",
+        "Paragraphs",
+        "Links",
+        "Images",
+        "Lists",
+        "Tables",
+        "Forms"
+      ]
+    },
+    {
+      "level": "Intermediate",
+      "topics": [
+        "HTML Input Types",
+        "Form Validation",
+        "Semantic HTML",
+        "Audio and Video",
+        "Block and Inline Elements",
+        "Classes and IDs",
+        "Iframes",
+        "HTML Entities"
+      ]
+    },
+    {
+      "level": "Advanced",
+      "topics": [
+        "Accessibility Basics",
+        "SEO Metadata",
+        "Responsive Images",
+        "Web Storage Overview",
+        "Canvas Introduction",
+        "Best Practices"
+      ]
+    }
+  ]
+}

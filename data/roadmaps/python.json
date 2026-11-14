@@ -1,0 +1,63 @@
+{
+  "id": "python",
+  "title": "Python Tutorial",
+  "description": "Learn Python from the basics to practical programming.",
+  "stages": [
+    {
+      "level": "Beginner",
+      "topics": [
+        "Introduction to Python",
+        "Installing Python",
+        "Python Syntax",
+        "Print and Comments",
+        "Variables",
+        "Data Types",
+        "Type Casting",
+        "User Input",
+        "Operators",
+        "If...Else",
+        "While Loop",
+        "For Loop",
+        "Strings",
+        "Lists",
+        "Tuples",
+        "Sets",
+        "Dictionaries",
+        "Functions"
+      ]
+    },
+    {
+      "level": "Intermediate",
+      "topics": [
+        "Function Arguments",
+        "Return Values",
+        "Modules",
+        "Packages",
+        "File Handling",
+        "Exception Handling",
+        "Classes and Objects",
+        "Inheritance",
+        "Polymorphism",
+        "Iterators",
+        "List Comprehensions",
+        "Lambda Functions",
+        "Virtual Environments",
+        "Working with APIs"
+      ]
+    },
+    {
+      "level": "Advanced",
+      "topics": [
+        "Decorators",
+        "Generators",
+        "Context Managers",
+        "Regular Expressions",
+        "Multithreading",
+        "Asyncio",
+        "Unit Testing",
+        "Database Connectivity",
+        "Packaging and Deployment"
+      ]
+    }
+  ]
+}

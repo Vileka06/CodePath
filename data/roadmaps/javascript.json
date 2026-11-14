@@ -1,0 +1,58 @@
+{
+  "id": "javascript",
+  "title": "JavaScript Tutorial",
+  "description": "Make websites interactive with modern JavaScript.",
+  "stages": [
+    {
+      "level": "Beginner",
+      "topics": [
+        "Introduction to JavaScript",
+        "Add JavaScript to HTML",
+        "Statements",
+        "Variables",
+        "Data Types",
+        "Operators",
+        "Strings",
+        "Numbers",
+        "If...Else",
+        "Switch",
+        "For Loop",
+        "While Loop",
+        "Functions",
+        "Arrays",
+        "Objects"
+      ]
+    },
+    {
+      "level": "Intermediate",
+      "topics": [
+        "DOM Introduction",
+        "Selecting HTML Elements",
+        "Changing HTML and CSS",
+        "Events",
+        "Array Methods",
+        "Scope",
+        "Closures",
+        "Error Handling",
+        "JSON",
+        "Modules",
+        "Promises",
+        "Async and Await",
+        "Fetch API"
+      ]
+    },
+    {
+      "level": "Advanced",
+      "topics": [
+        "Prototypes",
+        "Classes",
+        "Event Loop",
+        "Local Storage",
+        "Session Storage",
+        "ES Modules",
+        "Testing Basics",
+        "Performance and Security"
+      ]
+    }
+  ]
+}

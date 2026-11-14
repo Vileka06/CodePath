@@ -1,0 +1,476 @@
+{
+  "python": {
+    "title": "Python Tutorial",
+    "description": "Learn Python from fundamentals to practical programming.",
+    "sections": [
+      {
+        "name": "Python Basics",
+        "topics": [
+          "Introduction to Python",
+          "Installing Python",
+          "Python Syntax",
+          "Print and Comments",
+          "Variables",
+          "Data Types",
+          "Type Casting",
+          "User Input",
+          "Operators",
+          "If...Else",
+          "Match Statement",
+          "While Loop",
+          "For Loop",
+          "Break and Continue",
+          "Strings",
+          "String Methods",
+          "Lists",
+          "Tuples",
+          "Sets",
+          "Dictionaries"
+        ]
+      },
+      {
+        "name": "Functions and Modules",
+        "topics": [
+          "Functions",
+          "Function Arguments",
+          "Return Values",
+          "Lambda Functions",
+          "Recursion",
+          "Modules",
+          "Packages",
+          "Python Scope",
+          "Global and Nonlocal"
+        ]
+      },
+      {
+        "name": "Object-Oriented Python",
+        "topics": [
+          "Classes and Objects",
+          "Constructors",
+          "self Keyword",
+          "Inheritance",
+          "Polymorphism",
+          "Encapsulation",
+          "Abstraction",
+          "Method Overriding",
+          "Class and Static Methods"
+        ]
+      },
+      {
+        "name": "Advanced Python",
+        "topics": [
+          "Exception Handling",
+          "File Handling",
+          "Working with JSON",
+          "Date and Time",
+          "Regular Expressions",
+          "Iterators",
+          "Generators",
+          "Decorators",
+          "Virtual Environments",
+          "Pip and Packages",
+          "Working with APIs",
+          "Unit Testing",
+          "Debugging"
+        ]
+      }
+    ]
+  },
+  "java": {
+    "title": "Java Tutorial",
+    "description": "Learn Java syntax, object-oriented programming and core application development.",
+    "sections": [
+      {
+        "name": "Java Fundamentals",
+        "topics": [
+          "Introduction to Java",
+          "Installing Java",
+          "JDK, JRE and JVM",
+          "Java Syntax",
+          "Main Method",
+          "Variables",
+          "Primitive Data Types",
+          "Type Casting",
+          "Operators",
+          "Strings",
+          "User Input",
+          "If...Else",
+          "Switch",
+          "For Loop",
+          "While Loop",
+          "Break and Continue"
+        ]
+      },
+      {
+        "name": "Methods and Arrays",
+        "topics": [
+          "Methods",
+          "Method Parameters",
+          "Return Values",
+          "Method Overloading",
+          "Arrays",
+          "Multidimensional Arrays",
+          "Array Operations"
+        ]
+      },
+      {
+        "name": "Object-Oriented Java",
+        "topics": [
+          "Classes and Objects",
+          "Constructors",
+          "this Keyword",
+          "Static Keyword",
+          "Encapsulation",
+          "Inheritance",
+          "Method Overriding",
+          "Polymorphism",
+          "Abstraction",
+          "Interfaces",
+          "Packages",
+          "Access Modifiers"
+        ]
+      },
+      {
+        "name": "Advanced Java",
+        "topics": [
+          "Exception Handling",
+          "Collections Framework",
+          "ArrayList",
+          "LinkedList",
+          "HashMap",
+          "Generics",
+          "File Handling",
+          "Streams",
+          "Lambda Expressions",
+          "Multithreading"
+        ]
+      }
+    ]
+  },
+  "c": {
+    "title": "C Tutorial",
+    "description": "Build a strong foundation in structured programming with C.",
+    "sections": [
+      {
+        "name": "C Fundamentals",
+        "topics": [
+          "Introduction to C",
+          "Installing a C Compiler",
+          "Structure of a C Program",
+          "Compilation and Execution",
+          "Variables",
+          "Data Types",
+          "Constants",
+          "Input and Output",
+          "Format Specifiers",
+          "Operators",
+          "If...Else",
+          "Switch",
+          "While Loop",
+          "Do While Loop",
+          "For Loop",
+          "Break and Continue"
+        ]
+      },
+      {
+        "name": "Functions and Arrays",
+        "topics": [
+          "Functions",
+          "Function Declaration and Definition",
+          "Function Arguments",
+          "Recursion",
+          "Arrays",
+          "Two-Dimensional Arrays",
+          "Strings",
+          "String Functions"
+        ]
+      },
+      {
+        "name": "Pointers and Memory",
+        "topics": [
+          "Pointers",
+          "Pointer Arithmetic",
+          "Pointers and Arrays",
+          "Pointers and Functions",
+          "Dynamic Memory Allocation",
+          "Structures",
+          "Unions",
+          "Enumerations",
+          "Typedef"
+        ]
+      },
+      {
+        "name": "Practical C",
+        "topics": [
+          "File Handling",
+          "Preprocessor Directives",
+          "Header Files",
+          "Storage Classes",
+          "Command Line Arguments"
+        ]
+      }
+    ]
+  },
+  "cpp": {
+    "title": "C++ Tutorial",
+    "description": "Learn C++ from syntax and functions to object-oriented and STL concepts.",
+    "sections": [
+      {
+        "name": "C++ Fundamentals",
+        "topics": [
+          "Introduction to C++",
+          "Installing a C++ Compiler",
+          "C++ Syntax",
+          "Input and Output",
+          "Variables",
+          "Data Types",
+          "Constants",
+          "Type Casting",
+          "Operators",
+          "If...Else",
+          "Switch",
+          "For Loop",
+          "While Loop",
+          "Break and Continue",
+          "Strings",
+          "Arrays"
+        ]
+      },
+      {
+        "name": "Functions and Memory",
+        "topics": [
+          "Functions",
+          "Function Overloading",
+          "Default Arguments",
+          "Recursion",
+          "References",
+          "Pointers",
+          "Dynamic Memory",
+          "Namespaces"
+        ]
+      },
+      {
+        "name": "Object-Oriented C++",
+        "topics": [
+          "Classes and Objects",
+          "Constructors",
+          "Destructors",
+          "Encapsulation",
+          "Inheritance",
+          "Polymorphism",
+          "Abstraction",
+          "Operator Overloading",
+          "Virtual Functions"
+        ]
+      },
+      {
+        "name": "Modern C++ and STL",
+        "topics": [
+          "Templates",
+          "Exception Handling",
+          "STL Overview",
+          "Vectors",
+          "Lists",
+          "Stacks and Queues",
+          "Maps and Sets",
+          "Iterators",
+          "Lambda Expressions",
+          "File Handling"
+        ]
+      }
+    ]
+  },
+  "html": {
+    "title": "HTML Tutorial",
+    "description": "Learn to structure web pages using HTML elements and semantic markup.",
+    "sections": [
+      {
+        "name": "HTML Fundamentals",
+        "topics": [
+          "Introduction to HTML",
+          "HTML Editors",
+          "HTML Document Structure",
+          "HTML Elements",
+          "HTML Attributes",
+          "HTML Headings",
+          "HTML Paragraphs",
+          "HTML Text Formatting",
+          "HTML Comments",
+          "HTML Links",
+          "HTML Images",
+          "HTML Lists",
+          "HTML Tables",
+          "HTML Block and Inline Elements"
+        ]
+      },
+      {
+        "name": "Forms and Media",
+        "topics": [
+          "HTML Forms",
+          "Form Attributes",
+          "Input Types",
+          "Input Attributes",
+          "Labels and Buttons",
+          "HTML Audio",
+          "HTML Video",
+          "HTML Iframes"
+        ]
+      },
+      {
+        "name": "Semantic HTML",
+        "topics": [
+          "Semantic Elements",
+          "Header and Footer",
+          "Navigation",
+          "Main and Section",
+          "Article and Aside",
+          "HTML Entities",
+          "HTML Accessibility",
+          "Meta Tags"
+        ]
+      },
+      {
+        "name": "HTML Projects",
+        "topics": [
+          "Build a Personal Profile Page",
+          "Build a Contact Form",
+          "Build a Simple Product Page"
+        ]
+      }
+    ]
+  },
+  "css": {
+    "title": "CSS Tutorial",
+    "description": "Learn to style web pages with selectors, layouts and responsive design.",
+    "sections": [
+      {
+        "name": "CSS Fundamentals",
+        "topics": [
+          "Introduction to CSS",
+          "CSS Syntax",
+          "CSS Selectors",
+          "How to Add CSS",
+          "CSS Colors",
+          "CSS Backgrounds",
+          "CSS Borders",
+          "CSS Margins",
+          "CSS Padding",
+          "CSS Height and Width",
+          "CSS Box Model",
+          "CSS Text",
+          "CSS Fonts",
+          "CSS Icons"
+        ]
+      },
+      {
+        "name": "Layout",
+        "topics": [
+          "CSS Display",
+          "CSS Position",
+          "CSS Overflow",
+          "CSS Float",
+          "CSS Flexbox",
+          "CSS Grid",
+          "CSS Alignment",
+          "CSS Z-index"
+        ]
+      },
+      {
+        "name": "Responsive Design",
+        "topics": [
+          "CSS Units",
+          "CSS Specificity",
+          "Pseudo Classes",
+          "Pseudo Elements",
+          "Media Queries",
+          "Responsive Images",
+          "CSS Variables"
+        ]
+      },
+      {
+        "name": "Effects and Projects",
+        "topics": [
+          "Transitions",
+          "Transforms",
+          "Animations",
+          "Shadows",
+          "Build a Responsive Card",
+          "Build a Navigation Bar"
+        ]
+      }
+    ]
+  },
+  "javascript": {
+    "title": "JavaScript Tutorial",
+    "description": "Learn JavaScript to make web pages interactive and build browser applications.",
+    "sections": [
+      {
+        "name": "JavaScript Fundamentals",
+        "topics": [
+          "Introduction to JavaScript",
+          "Adding JavaScript to HTML",
+          "JavaScript Syntax",
+          "Statements and Comments",
+          "Variables",
+          "Data Types",
+          "Type Conversion",
+          "Operators",
+          "Strings",
+          "String Methods",
+          "Numbers",
+          "Math",
+          "Booleans",
+          "Comparisons",
+          "If...Else",
+          "Switch",
+          "For Loop",
+          "While Loop"
+        ]
+      },
+      {
+        "name": "Data and Functions",
+        "topics": [
+          "Functions",
+          "Function Parameters",
+          "Return Values",
+          "Arrow Functions",
+          "Arrays",
+          "Array Methods",
+          "Objects",
+          "Object Methods",
+          "Sets",
+          "Maps",
+          "Destructuring",
+          "Spread and Rest"
+        ]
+      },
+      {
+        "name": "Browser JavaScript",
+        "topics": [
+          "DOM Introduction",
+          "Selecting Elements",
+          "Changing HTML",
+          "Changing CSS",
+          "Events",
+          "Event Listeners",
+          "Form Validation",
+          "Browser Storage"
+        ]
+      },
+      {
+        "name": "Asynchronous JavaScript",
+        "topics": [
+          "Callbacks",
+          "Promises",
+          "Async and Await",
+          "Fetch API",
+          "JSON",
+          "Error Handling",
+          "Modules",
+          "Classes",
+          "ES6 Features"
+        ]
+      }
+    ]
+  }
+}

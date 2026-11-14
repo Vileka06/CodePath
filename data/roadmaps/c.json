@@ -1,0 +1,53 @@
+{
+  "id": "c",
+  "title": "C Tutorial",
+  "description": "Understand procedural programming, pointers and memory.",
+  "stages": [
+    {
+      "level": "Beginner",
+      "topics": [
+        "Introduction to C",
+        "Install a C Compiler",
+        "C Program Structure",
+        "Variables",
+        "Data Types",
+        "Constants",
+        "Input and Output",
+        "Operators",
+        "If...Else",
+        "Switch",
+        "For Loop",
+        "While Loop",
+        "Do While Loop",
+        "Functions",
+        "Arrays"
+      ]
+    },
+    {
+      "level": "Intermediate",
+      "topics": [
+        "Strings",
+        "Pointers",
+        "Pointer Arithmetic",
+        "Call by Value and Address",
+        "Structures",
+        "Unions",
+        "Enumerations",
+        "Dynamic Memory Allocation",
+        "File Handling",
+        "Preprocessor Directives"
+      ]
+    },
+    {
+      "level": "Advanced",
+      "topics": [
+        "Function Pointers",
+        "Storage Classes",
+        "Bitwise Operators",
+        "Linked Lists",
+        "Stacks and Queues",
+        "Debugging and Memory Safety"
+      ]
+    }
+  ]
+}

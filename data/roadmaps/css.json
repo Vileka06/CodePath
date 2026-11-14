@@ -1,0 +1,50 @@
+{
+  "id": "css",
+  "title": "CSS Tutorial",
+  "description": "Style web pages with layouts, responsive design and modern CSS.",
+  "stages": [
+    {
+      "level": "Beginner",
+      "topics": [
+        "Introduction to CSS",
+        "CSS Syntax",
+        "Selectors",
+        "How to Add CSS",
+        "Colors",
+        "Backgrounds",
+        "Borders",
+        "Margins",
+        "Padding",
+        "Box Model",
+        "Text and Fonts",
+        "Display"
+      ]
+    },
+    {
+      "level": "Intermediate",
+      "topics": [
+        "Position",
+        "Flexbox",
+        "CSS Grid",
+        "Pseudo Classes",
+        "Pseudo Elements",
+        "Specificity",
+        "Media Queries",
+        "Responsive Design",
+        "Transitions",
+        "Transforms"
+      ]
+    },
+    {
+      "level": "Advanced",
+      "topics": [
+        "Animations",
+        "CSS Variables",
+        "Container Queries",
+        "Architecture and Reusable Styles",
+        "Accessibility",
+        "Performance"
+      ]
+    }
+  ]
+}
